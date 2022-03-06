@@ -1,5 +1,7 @@
 <html>
     <head>
+        <meta charset="UTF-8" />
+        <title>구구단</title>
         <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -7,27 +9,33 @@
     <body>
         <div id="root"></div> <!-- <button>Like</button> <- 만든다 -->
         <script type="text/babel">
-            // const e = React.createElement;
-
-            class LikeButton extends React.Component {
+            class GuGuDan extends React.Component {
                 constructor(props) {
                     super(props);
                     this.state = {
-                        liked: false,
+                        first:Math.ceil(Math.random() * 9),
+                        second:Math.ceil(Math.random() * 9),
+                        value:'',
+                        result:'',
                     };
                 }
 
                 render() {
-                    return <button type="submit" onClick={() => { this.setState({ liked: true })}}>
-                        {this.state.liked === true ? 'Liked' : 'Like'}
-                    </button>;
-                    // JSX ( JS + XML )
-                    // return e('button', { onClick: () => { this.setState({ liked: true })}, type: 'submit' }, this.state.liked === true ? 'Liked' : 'Like',); // <button>Like</button> <- 이걸 만들겠다
+                    return (
+                        <div>
+                            <div>{this.state.first} 곱하기 {this.state.second}는?</div>
+                            <form>
+                                <input type="number" value={this.state.value} />
+                                <button>입력!</button>
+                            </form>
+                            <div>{this.state.result}</div>
+                        </div>
+                    );
                 }
             }
         </script>
         <script type="text/babel">
-            ReactDOM.render(<div><LikeButton/><LikeButton/></div>, document.querySelector('#root'));
+            ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
         </script>
     </body>
 </html>
